@@ -21,7 +21,7 @@ public class Order3Strings {
     // @SuppressWarnings("unused")
     public static void main(String[] args) {
         // variables declaration
-        int answer, yesNo;
+        int answer, yesNo, nameCount = 0;
         String title, namesOrdered, names, name1, name2, name3;
         /*
          * due to the JOptionPane dialogue boxes sometimes appearing behind
@@ -93,12 +93,32 @@ public class Order3Strings {
             // problem 7:
             Scanner splitter = new Scanner(names);
 
-            // names 1 through 3 are saved in the splitter.next() method
-            name1 = splitter.next();
-            name2 = splitter.next();
-            name3 = splitter.next();
+            // problem 4/8:
+            /*
+             * names 1 through 3 would be saved in the splitter.next() method,
+             * checking if the text for names 1 through 3 exist
+             */
+            if (splitter.hasNext()) {
+                name1 = splitter.next();
+                nameCount++;
+            }
 
-            if (name3.equals("")) {
+            if (splitter.hasNext()) {
+                name2 = splitter.next();
+                nameCount++;
+            }
+
+            if (splitter.hasNext()) {
+                name3 = splitter.next();
+                nameCount++;
+            } 
+
+            // problem 5:
+            /*
+             * strictly enforces the rule of only accepting 3 names;
+             * attempting to add a fourth will end the program
+             */
+            if (splitter.hasNext()) {
                 JOptionPane.showMessageDialog(dialog, "This program will terminate" +
                                               " due to an invalid input.",
                                               "3 Strings Comparision,",
@@ -106,7 +126,9 @@ public class Order3Strings {
                 System.exit(0);
             }
 
-            splitter.close();
+            // problem 8:
+            namesOrdered = sortWords(name1, name2, name3);
+
         } else {
             /*
              * if the user clicks no, the program will simply end (with
@@ -119,5 +141,22 @@ public class Order3Strings {
             System.exit(0);
         }
     } // end of main()
+
+    // problem 9:
+    /**
+     * 
+     * @param w1        name 1
+     * @param w2        name 2
+     * @param w3        name 3
+     * @return
+     */
+    public static String sortWords(String w1, String w2, String w3) {
+        if (w1.compareToIgnoreCase(w2) <= 0 && w1.compareToIgnoreCase(w3) <= 0) {
+
+        } else {
+
+        }
+        return;
+    } // end of sortWords()
 
 } // end of Order3Strings
