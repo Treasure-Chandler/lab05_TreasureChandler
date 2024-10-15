@@ -21,8 +21,9 @@ public class Order3Strings {
     // @SuppressWarnings("unused")
     public static void main(String[] args) {
         // variables declaration
-        int answer, yesNo, nameCount = 0;
-        String title, namesOrdered, names, name1, name2, name3;
+        int answer, yesNo = 0, nameCount = 0;
+        String title, message, namesOrdered, names, 
+               name1 = "", name2 = "", name3 = "";
         /*
          * due to the JOptionPane dialogue boxes sometimes appearing behind
          * all of your windows, you will need to declare a JDialog and
@@ -129,6 +130,126 @@ public class Order3Strings {
             // problem 8:
             namesOrdered = sortWords(name1, name2, name3);
 
+            // problem 11:
+            title = "The Names in Order";
+            message = "The names in lexicographic order are" +
+                      "\n" + sortWords(name1, name2, name3);
+            JOptionPane.showMessageDialog(dialog, message, title,
+                                          JOptionPane.INFORMATION_MESSAGE);
+
+            System.out.println(message);
+
+            // problem 13:
+            // continuation of string concatenation 
+            while (yesNo == JOptionPane.YES_OPTION) {
+                message = "Do you want to continue string comparison?";
+                yesNo = JOptionPane.showConfirmDialog(dialog, message,
+                                                      title,
+                                                      JOptionPane.YES_NO_OPTION);
+
+                if (yesNo == JOptionPane.YES_OPTION) {
+                    title = "Welcome to the name ordering!";
+                    names = JOptionPane.showInputDialog(dialog, "Enter 3 names with " +
+                                                        "spaces in between:", title,
+                                                        JOptionPane.QUESTION_MESSAGE);
+
+                    if (names == null) {
+                        // if the user clicked "Cancel", the program will end
+                        JOptionPane.showMessageDialog(dialog, "Action has been canceled!",
+                                                    "3 Strings Comparison",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(dialog, "The program terminates!" +
+                                                    "\nEnd of this program.",
+                                                    title,
+                                                    JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    }
+                    // problem 4:
+                    if (names.contains("null")) {
+                        /*
+                        * if the user typed the word "null" in the text box,
+                        * the program will end
+                        */
+                        JOptionPane.showMessageDialog(dialog, "This program will terminate" +
+                                                    " due to an invalid input.",
+                                                    "3 Strings Comparision,",
+                                                    JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    } else if (names.equals("")) {
+                        /*
+                        * if the user clicked "OK" without typing anything,
+                        * the program will end
+                        */
+                        JOptionPane.showMessageDialog(dialog, "You clicked OK without " +
+                                                    "typing 3 names...",
+                                                    "3 Strings Comparision,",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(dialog, "The program terminates!" +
+                                                    "\nEnd of this program.",
+                                                    title,
+                                                    JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    }
+
+                    // problem 7:
+                    Scanner splitter2 = new Scanner(names);
+
+                    // problem 4/8:
+                    /*
+                    * names 1 through 3 would be saved in the splitter.next() method,
+                    * checking if the text for names 1 through 3 exist
+                    */
+                    if (splitter.hasNext()) {
+                        name1 = splitter2.next();
+                        nameCount++;
+                    }
+
+                    if (splitter.hasNext()) {
+                        name2 = splitter2.next();
+                        nameCount++;
+                    }
+
+                    if (splitter.hasNext()) {
+                        name3 = splitter2.next();
+                        nameCount++;
+                    } 
+
+                    // problem 5:
+                    /*
+                    * strictly enforces the rule of only accepting 3 names;
+                    * attempting to add a fourth will end the program
+                    */
+                    if (splitter.hasNext()) {
+                        JOptionPane.showMessageDialog(dialog, "This program will terminate" +
+                                                    " due to an invalid input.",
+                                                    "3 Strings Comparision,",
+                                                    JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    }
+
+                    // problem 8:
+                    namesOrdered = sortWords(name1, name2, name3);
+
+                    // problem 11:
+                    title = "The Names in Order";
+                    message = "The names in lexicographic order are" +
+                            "\n" + sortWords(name1, name2, name3);
+                    JOptionPane.showMessageDialog(dialog, message, title,
+                                                JOptionPane.INFORMATION_MESSAGE);
+
+                    System.out.println(message);
+                } else {
+                    /*
+                    * if the user clicks no, the program will simply end (with
+                    * a new dialog window to let them know about that)
+                    */
+                    JOptionPane.showMessageDialog(dialog, "The program terminates!" +
+                                                  "\nEnd of this program.",
+                                                   title,
+                                                  JOptionPane.WARNING_MESSAGE);
+                    System.exit(0);
+                }
+            } // end of while-loop
         } else {
             /*
              * if the user clicks no, the program will simply end (with
@@ -140,9 +261,16 @@ public class Order3Strings {
                                           JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }
+        
     } // end of main()
 
     // problem 9:
+    /*
+     * this sortWords() method sorts the 3 names, name1, name2, and name3,
+     * in lexicographic order. the if-else statements determines the
+     * lexicographic order of the names
+     * (there are six possible orders for three names)
+     */
     /**
      * 
      * @param w1        name 1
@@ -151,12 +279,45 @@ public class Order3Strings {
      * @return
      */
     public static String sortWords(String w1, String w2, String w3) {
+        String first, second, third, orderedNames;
+
         if (w1.compareToIgnoreCase(w2) <= 0 && w1.compareToIgnoreCase(w3) <= 0) {
-
+            first = w1;
+            if (w2.compareToIgnoreCase(w3) <= 0) {
+                second = w2;
+                third = w3;
+            } else {
+                second = w3;
+                third = w2;
+            }
+        } else if (w2.compareToIgnoreCase(w1) <= 0 && w2.compareToIgnoreCase(w3) <= 0) {
+            first = w2;
+            if (w1.compareToIgnoreCase(w3) <= 0) {
+                second = w1;
+                third = w3;
+            } else {
+                second = w3;
+                third = w1;
+            }
         } else {
-
+            first = w3;
+            if (w1.compareToIgnoreCase(w2) <= 0) {
+                second = w1;
+                third = w2;
+            } else {
+                second = w2;
+                third = w1;
+            }
         }
-        return;
+
+        // problem 10:
+        /* collects and saves the names in the correct order 
+         * (after concatenation)
+         */
+        orderedNames = first + " " + second + " " + third;
+
+        return orderedNames;
+
     } // end of sortWords()
 
 } // end of Order3Strings
