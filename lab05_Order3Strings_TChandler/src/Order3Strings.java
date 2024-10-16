@@ -130,13 +130,12 @@ public class Order3Strings {
             namesOrdered = sortWords(name1, name2, name3);
 
             // problem 11:
-            title = "The Names in Order";
-            message = "The names in lexicographic order are" +
-                      "\n" + sortWords(name1, name2, name3);
-            JOptionPane.showMessageDialog(dialog, message, title,
-                                          JOptionPane.INFORMATION_MESSAGE);
-
-            System.out.println(message);
+            /*
+             * calls the displayInConsole() method, which depicts the dialog window
+             * displaying the names in lexicographic order along with displaying the
+             * same message in the console
+             */
+            displayInConsole(namesOrdered, names, name1, name2, name3);
 
             splitter.close();
 
@@ -211,13 +210,7 @@ public class Order3Strings {
 
                     namesOrdered = sortWords(name1, name2, name3);
 
-                    title = "The Names in Order";
-                    message = "The names in lexicographic order are" +
-                            "\n" + sortWords(name1, name2, name3);
-                    JOptionPane.showMessageDialog(dialog, message, title,
-                                                JOptionPane.INFORMATION_MESSAGE);
-
-                    System.out.println(message);
+                    displayInConsole(namesOrdered, names, name1, name2, name3);
 
                     splitter2.close();
                 } else {
@@ -296,5 +289,41 @@ public class Order3Strings {
         return orderedNames;
 
     } // end of sortWords()
+
+    // problem 11:
+    /*
+     * this displayInConsole() method depicts the dialog window
+     * displaying the names in lexicographic order along with displaying the
+     * same message in the console
+     */
+    /**
+     * 
+     * @param str       placeholder for sorting the names
+     * @param task      message to display the names in lexicographic order
+     * @param name1     name 1
+     * @param name2     name 2
+     * @param name3     name 3
+     */
+    public static void displayInConsole(String str, String task, 
+                                        String name1, String name2, String name3) {
+        String title;
+        /*
+         * due to the JOptionPane dialogue boxes sometimes appearing behind
+         * all of your windows, you will need to declare a JDialog and
+         * setAlwaysOnTop to true
+         */
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+
+        title = "The Names in Order";
+        task = "The names in lexicographic order are" +
+               "\n" + sortWords(name1, name2, name3);
+
+        JOptionPane.showMessageDialog(dialog, task, title,
+                                      JOptionPane.INFORMATION_MESSAGE);
+
+        System.out.println(task);
+
+    } // end of displayInConsole
 
 } // end of Order3Strings
