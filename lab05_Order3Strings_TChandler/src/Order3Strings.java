@@ -18,7 +18,7 @@ public class Order3Strings {
      * this line is to suppress warnings for "unused" variables that are
      * actually used
      */
-    // @SuppressWarnings("unused")
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         // variables declaration
         int answer, yesNo = 0, nameCount = 0;
@@ -138,6 +138,8 @@ public class Order3Strings {
 
             System.out.println(message);
 
+            splitter.close();
+
             // problem 13:
             /*
              * continuation of string concatenation, basically repeating the
@@ -216,6 +218,8 @@ public class Order3Strings {
                                                 JOptionPane.INFORMATION_MESSAGE);
 
                     System.out.println(message);
+
+                    splitter2.close();
                 } else {
                     JOptionPane.showMessageDialog(dialog, "The program terminates!" +
                                                   "\nEnd of this program.",
@@ -235,7 +239,6 @@ public class Order3Strings {
                                           JOptionPane.WARNING_MESSAGE);
             System.exit(0);
         }
-        
     } // end of main()
 
     // problem 9:
