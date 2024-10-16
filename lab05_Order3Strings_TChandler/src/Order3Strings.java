@@ -12,7 +12,7 @@ import java.util.Scanner;           // needed for the Scanner class
 public class Order3Strings {
     /**
      * 
-     * @param args entered values
+     * @param args      entered values
      */
     /*
      * this line is to suppress warnings for "unused" variables that are
@@ -250,7 +250,7 @@ public class Order3Strings {
      * @param w1        name 1
      * @param w2        name 2
      * @param w3        name 3
-     * @return
+     * @return          returns the actual names in lexicographic order
      */
     public static String sortWords(String w1, String w2, String w3) {
         String first, second, third, orderedNames;
