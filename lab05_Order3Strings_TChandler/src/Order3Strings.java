@@ -41,7 +41,6 @@ public class Order3Strings {
                                               JOptionPane.YES_NO_OPTION);
 
         // problems 2 and 3:
-
         if (answer == JOptionPane.YES_OPTION) {
             // problem 3:
             /*
@@ -140,7 +139,10 @@ public class Order3Strings {
             System.out.println(message);
 
             // problem 13:
-            // continuation of string concatenation 
+            /*
+             * continuation of string concatenation, basically repeating the
+             * code from problems 1-11, with some minor changes
+             */
             while (yesNo == JOptionPane.YES_OPTION) {
                 message = "Do you want to continue string comparison?";
                 yesNo = JOptionPane.showConfirmDialog(dialog, message,
@@ -154,7 +156,6 @@ public class Order3Strings {
                                                         JOptionPane.QUESTION_MESSAGE);
 
                     if (names == null) {
-                        // if the user clicked "Cancel", the program will end
                         JOptionPane.showMessageDialog(dialog, "Action has been canceled!",
                                                     "3 Strings Comparison",
                                                     JOptionPane.INFORMATION_MESSAGE);
@@ -163,23 +164,13 @@ public class Order3Strings {
                                                     title,
                                                     JOptionPane.WARNING_MESSAGE);
                         System.exit(0);
-                    }
-                    // problem 4:
-                    if (names.contains("null")) {
-                        /*
-                        * if the user typed the word "null" in the text box,
-                        * the program will end
-                        */
+                    } else if (names.contains("null")) {
                         JOptionPane.showMessageDialog(dialog, "This program will terminate" +
                                                     " due to an invalid input.",
                                                     "3 Strings Comparision,",
                                                     JOptionPane.WARNING_MESSAGE);
                         System.exit(0);
                     } else if (names.equals("")) {
-                        /*
-                        * if the user clicked "OK" without typing anything,
-                        * the program will end
-                        */
                         JOptionPane.showMessageDialog(dialog, "You clicked OK without " +
                                                     "typing 3 names...",
                                                     "3 Strings Comparision,",
@@ -191,35 +182,24 @@ public class Order3Strings {
                         System.exit(0);
                     }
 
-                    // problem 7:
                     Scanner splitter2 = new Scanner(names);
 
-                    // problem 4/8:
-                    /*
-                    * names 1 through 3 would be saved in the splitter.next() method,
-                    * checking if the text for names 1 through 3 exist
-                    */
-                    if (splitter.hasNext()) {
+                    if (splitter2.hasNext()) {
                         name1 = splitter2.next();
                         nameCount++;
                     }
 
-                    if (splitter.hasNext()) {
+                    if (splitter2.hasNext()) {
                         name2 = splitter2.next();
                         nameCount++;
                     }
 
-                    if (splitter.hasNext()) {
+                    if (splitter2.hasNext()) {
                         name3 = splitter2.next();
                         nameCount++;
                     } 
 
-                    // problem 5:
-                    /*
-                    * strictly enforces the rule of only accepting 3 names;
-                    * attempting to add a fourth will end the program
-                    */
-                    if (splitter.hasNext()) {
+                    if (splitter2.hasNext()) {
                         JOptionPane.showMessageDialog(dialog, "This program will terminate" +
                                                     " due to an invalid input.",
                                                     "3 Strings Comparision,",
@@ -227,10 +207,8 @@ public class Order3Strings {
                         System.exit(0);
                     }
 
-                    // problem 8:
                     namesOrdered = sortWords(name1, name2, name3);
 
-                    // problem 11:
                     title = "The Names in Order";
                     message = "The names in lexicographic order are" +
                             "\n" + sortWords(name1, name2, name3);
@@ -239,10 +217,6 @@ public class Order3Strings {
 
                     System.out.println(message);
                 } else {
-                    /*
-                    * if the user clicks no, the program will simply end (with
-                    * a new dialog window to let them know about that)
-                    */
                     JOptionPane.showMessageDialog(dialog, "The program terminates!" +
                                                   "\nEnd of this program.",
                                                    title,
